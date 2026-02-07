@@ -155,6 +155,26 @@
             z-index: -1;
         }
 
+        .solid-white-section {
+            background: #ffffff !important;
+            position: relative;
+            z-index: 2;
+            isolation: isolate;
+        }
+
+        .solid-white-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #ffffff;
+            z-index: 0;
+        }
+
+        .solid-white-section > * {
+            position: relative;
+            z-index: 1;
+        }
+
 
         .new-badge {
             display: inline-flex;
@@ -245,6 +265,114 @@
         .submit-btn:hover {
             transform: translateY(-2px);
         }
+
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 60px auto 0;
+            padding: 0 60px;
+        }
+
+        .carousel-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 24px;
+        }
+
+        .carousel-card {
+            flex: 0 0 calc(33.333% - 16px);
+            min-width: 0;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-card-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            overflow: hidden;
+        }
+
+        .carousel-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-card-content {
+            padding: 24px;
+        }
+
+        .carousel-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .carousel-card-description {
+            font-size: 15px;
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .carousel-card-link {
+            color: #10b981;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-nav:hover {
+            background: #f9fafb;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-nav.prev {
+            left: 0;
+        }
+
+        .carousel-nav.next {
+            right: 0;
+        }
+
+        .carousel-nav.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body> 
@@ -296,7 +424,7 @@
     </section>
 
     <!-- Abstract Banner Section -->
-    <section class="white-section" style="padding: 80px 40px; overflow: hidden; min-height: 300px; width: 100%;">
+    <section class="white-section solid-white-section" style="padding: 80px 40px; overflow: hidden; min-height: 300px; width: 100%;">
         <div style="max-width: 100%; margin: 0 auto; background: #ffffff; position: relative; z-index: 100; width: 100%; height: 100%;">
             <!-- Add your abstract banner image here -->
             <div style="width: 100%; height: auto; background: #ffffff; position: relative; z-index: 100;">
@@ -415,9 +543,162 @@
             <h3 style="font-size: 32px; font-weight: 600; color: #1f2937; margin-bottom: 20px; line-height: 1.3;">
                 Unlock knowledge for any industry
             </h3>
-            <p style="font-size: 18px; color: #6b7280; line-height: 1.8; margin-bottom: 0;">
+            <p style="font-size: 18px; color: #6b7280; line-height: 1.8; margin-bottom: 60px;">
                 From frontier AI companies to consumer brands, leaders across industries scale with Mintlify.
             </p>
+        </div>
+
+        <!-- Company Stories Carousel -->
+        <div class="carousel-container">
+            <div class="carousel-wrapper">
+                <button class="carousel-nav prev" onclick="moveCarousel(-1)" id="prevBtn">‹</button>
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Card 1 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (1).png" alt="Perplexity" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">How Perplexity transformed its documentation</h3>
+                            <p class="carousel-card-description">How Perplexity transformed its documentation into an AI-native developer experience that matches their innovative platform.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (2).png" alt="X" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">How X powers developer experience</h3>
+                            <p class="carousel-card-description">How X is using Mintlify to power the developer experience for the global town square.</p>
+                            <a href="#" class="carousel-card-link" style="color: #10b981;">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (3).png" alt="Kalshi" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">How Kalshi helps developers</h3>
+                            <p class="carousel-card-description">How Kalshi helps developers discover what's possible faster and ultimately drive broader adoption.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (4).png" alt="Cogniti" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">How Cogniti transformed their product</h3>
+                            <p class="carousel-card-description">How Cogniti transformed their product documentation to scale with their growing user base.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (5).png" alt="Company 5" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">Company Success Story</h3>
+                            <p class="carousel-card-description">Learn how this company leveraged Mintlify to improve their documentation workflow and developer satisfaction.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (6).png" alt="Company 6" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">Scaling Documentation</h3>
+                            <p class="carousel-card-description">Discover how this team scaled their documentation to support thousands of developers worldwide.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 7 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (7).png" alt="Company 7" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">AI-Powered Documentation</h3>
+                            <p class="carousel-card-description">See how this company integrated AI capabilities into their documentation platform.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 8 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (8).png" alt="Company 8" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">Developer Experience Focus</h3>
+                            <p class="carousel-card-description">How focusing on developer experience transformed this company's product adoption.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 9 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (9).png" alt="Company 9" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">Enterprise Documentation</h3>
+                            <p class="carousel-card-description">Enterprise teams trust Mintlify for their critical documentation needs.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 10 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (10).png" alt="Company 10" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">Startup Growth Story</h3>
+                            <p class="carousel-card-description">From startup to scale-up, see how documentation played a key role in growth.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 11 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (11).png" alt="Company 11" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">Open Source Success</h3>
+                            <p class="carousel-card-description">How open source projects use Mintlify to maintain world-class documentation.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 12 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (12).png" alt="Company 12" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">API Documentation Excellence</h3>
+                            <p class="carousel-card-description">Building comprehensive API documentation that developers love to use.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                    <!-- Card 13 -->
+                    <div class="carousel-card">
+                        <div class="carousel-card-image" style="background: #fff; padding: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="./image (13).png" alt="Company 13" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-card-content">
+                            <h3 class="carousel-card-title">Global Team Collaboration</h3>
+                            <p class="carousel-card-description">How distributed teams collaborate effectively using Mintlify's documentation platform.</p>
+                            <a href="#" class="carousel-card-link">Read story ›</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" onclick="moveCarousel(1)" id="nextBtn">›</button>
+            </div>
         </div>
     </section>
 
@@ -578,5 +859,58 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        let currentIndex = 0;
+        const totalCards = 13;
+        const cardsPerView = 3;
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            if (!track || track.children.length === 0) return;
+            
+            const card = track.children[0];
+            const cardWidth = card.offsetWidth;
+            const gap = 24;
+            const moveDistance = cardWidth + gap;
+            
+            // Calculate max index (we can move until the last 3 cards are visible)
+            const maxIndex = totalCards - cardsPerView;
+            
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex > maxIndex) currentIndex = maxIndex;
+            
+            const translateX = -currentIndex * moveDistance;
+            track.style.transform = `translateX(${translateX}px)`;
+            
+            // Update button states
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            if (prevBtn) prevBtn.classList.toggle('disabled', currentIndex === 0);
+            if (nextBtn) nextBtn.classList.toggle('disabled', currentIndex >= maxIndex);
+        }
+
+        function moveCarousel(direction) {
+            const maxIndex = totalCards - cardsPerView;
+            currentIndex += direction;
+            
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex > maxIndex) currentIndex = maxIndex;
+            
+            updateCarousel();
+        }
+
+        // Initialize carousel
+        window.addEventListener('load', () => {
+            setTimeout(updateCarousel, 100);
+        });
+
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(updateCarousel, 250);
+        });
+    </script>
 </body>
 </html>
